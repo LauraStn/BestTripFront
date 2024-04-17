@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BestTrip</title>
+  </head>
+  <body>
+    <header class="header sticky top-0 bg-white shadow-md flex items-center justify-between px-8 py-02">
+ 
+      <h1 class="w-3/12">
+          <a href="./index.html">
+            <i class="fa-solid fa-people-robbery h-6 w-auto hover:text-green-500 duration-200"></i>
+            
+          </a>
+      </h1>
+    
+      <nav class="nav font-semibold text-lg">
+          <ul class="flex items-center">
+              <li class="p-4 border-b-2 border-green-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer active">
+                <a href="./index.html">Home</a>
+              </li>
+              <li class="p-4 border-b-2 border-green-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer">
+                <a href="./listings.html">Events</a>
+              </li>
+              <li
+            class="logoutBtn hidden text-red-500 logoutBtn hidden p-4 border-b-2 border-green-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer"
+          >
+            Logout
+          </li>
+        
+              
+          </ul>
+      </nav>
+    
+      <div class="w-3/12 flex justify-end">
+          
+         
+      </div>
+    </header>
+    <main>
+        <div
+        id="createListing"
+        class="lg:p-36 md:p-52 sm:20 p-8 lg:w-2/5 rounded-lg "
+      >
+        <h2 class="text-2xl font-semibold mb-4 text-center">
+          Create a new listing
+        </h2>
+        <form action="">
+          <div class="mb-4">
+            <label for="title" class="block text-black">Title</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              class="title w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+              autocomplete="off"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="image" class="block text-black"
+              >Image URL</label
+            >
+            <input
+              type="url"
+              id="image"
+              name="image"
+              class="image w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+              autocomplete="off"
+            />
+          </div>
+          <div class="mb-7">
+            <label for="maxParticipant" class="block text-black">Max participant</label>
+            <input
+              type="number"
+              id="maxParticipant"
+              name="maxParticipant"
+              class="maxParticipant w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+              autocomplete="off"
+            />
+          </div>
+          <div class="mb-7">
+            <label for="eventDate" class="block text-black">Event Date</label>
+            <input
+              type="date"
+              id="eventDate"
+              name="eventDate"
+              class="eventDate w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+              autocomplete="off"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="place" class="block text-black">Place</label>
+            <input
+              type="text"
+              id="place"
+              name="place"
+              class="place w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+              autocomplete="off"
+            />
+          </div>
+          <div class="mb-7">
+            <label for="description" class="block text-black"
+              >Description</label
+            >
+            <textarea
+              id="description"
+              name="description"
+              class="description w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+              autocomplete="off"
+            ></textarea>
+          </div>
+          <button
+            id="listingBtn"
+            class="bg-black hover:bg-black text-white font-semibold rounded-md py-2 px-4 w-full"
+          >
+            Send
+          </button>
+          <p class="listing-msg"></p>
+        </form>
+      </div>
+      <div class="create">
+        
+      </div>
+      <div
+          class="userListings grid justify-center px-3 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7 my-10"
+        ></div>
+
+        <div class="edit"></div>
+    </main>
+    <script src="./listings.js"></script>
+    <script src="./auth.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://kit.fontawesome.com/e5ced9d846.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

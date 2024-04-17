@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BestTrip auth</title>
+  </head>
+  <body>
+  
+    <header class="header sticky top-0 bg-white shadow-md flex items-center justify-between px-8 py-02">
+ 
+      <h1 class="w-3/12">
+          <a href="./index.html">
+            <i class="fa-solid fa-people-robbery h-6 w-auto hover:text-green-500 duration-200"></i>
+            
+          </a>
+      </h1>
+    
+      <nav class="nav font-semibold text-lg">
+          <ul class="flex items-center">
+              <li class="p-4 border-b-2 border-green-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer active">
+                <a href="./index.html">Home</a>
+              </li>
+              
+              <li class="p-4 border-b-2 border-green-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer">
+                <a href="./listings.html">Events</a>
+              </li>
+              
+          </ul>
+      </nav>
+    
+      <div class="w-3/12 flex justify-end">
+          
+        
+      </div>
+    </header>
+    <main>
+      <div class="form-auth">
+        <div
+          id="register"
+          class="lg:p-36 md:p-52 sm:20 p-8 lg:w-2/5 rounded-lg "
+        >
+          <h2 class="text-2xl font-semibold mb-4 text-center">Join us Now</h2>
+          <form action="">
+            <div class="mb-4">
+              <label for="firstNameRegister" class="block text-slate-200"
+                >First Name</label
+              >
+              <input
+                type="text"
+                id="firstNameRegister"
+                name="firstNameregister"
+                class="firstNameregister w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 userName"
+                autocomplete="off"
+              />
+            </div>
+            <div class="mb-4">
+              <label for="lastNameRegister" class="block text-slate-200"
+                >Last Name</label
+              >
+              <input
+                type="text"
+                id="lastNameRegister"
+                name="lastNameRegister"
+                class="lastNameRegister w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 userName"
+                autocomplete="off"
+              />
+            </div>
+            <div class="mb-4">
+              <label for="emailRegister" class="block text-slate-100"
+                >Email</label
+              >
+              <input
+                type="email"
+                id="emailRegister"
+                name="emailRegister"
+                class="emailRegister w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 email"
+                autocomplete="off"
+              />
+            </div>
+            <div class="mb-7">
+              <label for="passwordRegister" class="block text-slate-100"
+                >Password</label
+              >
+              <input
+                type="password"
+                id="passwordRegister"
+                name="passwordRegister"
+                class="passwordRegister w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 password"
+                autocomplete="off"
+              />
+            </div>
+            <div class="mb-4 flex items-center">
+              <input
+                type="checkbox"
+                id="policy"
+                name="policy"
+                class="text-blue-500"
+                required
+              />
+              <label for="remember" class="text-slate-200 ml-2">
+                I accept the
+                <a
+                  href="#"
+                  class="text-blue-600 hover:text-blue-700 hover:underline"
+                  >terms</a
+                >
+                and
+                <a
+                  href="#"
+                  class="text-blue-600 hover:text-blue-700 hover:underline"
+                  >privacy policy</a
+                >
+              </label>
+            </div>
+            <button
+              id="signBtn"
+              class="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full"
+            >
+              Create Account
+            </button>
+            <p class="register-msg"></p>
+          </form>
+        </div>
+        <div
+          id="login"
+          class="lg:p-36 md:p-52 sm:20 p-8 lg:w-2/5 rounded-lg"
+        >
+          <h2 class="text-2xl font-semibold mb-4 text-center">
+            Login to your Account
+          </h2>
+          <form action="">
+            <div class="mb-4">
+              <label for="emailLogin" class="block text-slate-100">Email</label>
+              <input
+                type="email"
+                id="emailLogin"
+                name="emailLogin"
+                class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 email"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="passwordLogin" class="block text-slate-200"
+                >Password</label
+              >
+              <input
+                type="password"
+                id="passwordLogin"
+                name="passwordLogin"
+                class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 password"
+                autocomplete="off"
+              />
+            </div>
+            <div class="mb-4 flex items-center">
+              <input
+                type="checkbox"
+                id="remember"
+                name="remember"
+                class="text-blue-500"
+              />
+              <label for="remember" class="text-slate-200 ml-2"
+                >Remember Me</label
+              >
+            </div>
+            <div class="mb-6 text-blue-800">
+              <a href="#" class="hover:underline">Forgot Password?</a>
+            </div>
+            <button
+              id="loginBtn"
+              class="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full"
+            >
+              Login
+            </button>
+            <p class="login-msg"></p>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./auth.js"></script>
+    <script
+      src="https://kit.fontawesome.com/e5ced9d846.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
