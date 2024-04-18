@@ -22,9 +22,11 @@ async function getAllListings() {
         <p class="mt-3 block text-right text-black"> Number of participants:
               ${listing.participant}/${listing.maxParticipant}
             </p>
-            <button class="join m-2 hover:bg-gray-400 text-black border px-4 rounded-md" onclick="participate('${listing._id}')">Participate<button/> 
+            <button class="joinBtn m-2 hover:bg-gray-400 text-black border px-4 rounded-md" onclick="participate('${listing._id}')">Participate<button/> 
+            <p class="full paragraph-normal text-red-600"></p>
     </div>
 </div>`
+
   })
 }
 if (listings) {
@@ -32,8 +34,7 @@ if (listings) {
 }
 
 async function participate(listingId){
-  
-
+  const fullMsg = document.querySelector('full')
   const request = {
     method: "PATCH",
     headers: {
@@ -52,10 +53,11 @@ async function participate(listingId){
 
   for(i=0; i<=result.maxParticipant; i++){
     if (result.participant === result.maxParticipant){
+      window.alert("Event full");
       return
     }
     else{
-      result.documentparticipant +1
+      result.participant +1
       window.alert("Join successfull !");
       window.location.reload();
       return
