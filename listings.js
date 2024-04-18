@@ -4,9 +4,10 @@ const listingMsg = document.querySelector(".listing-msg");
 const jwt = localStorage.getItem('token')
 const userListings = document.querySelector(".userListings");
 
+
 async function getAllListings() {
-  let getAll = await fetch('http://localhost:3500/listing/all')
-  let result = await getAll.json()
+  const getAll = await fetch('http://localhost:3500/listing/all')
+  const result = await getAll.json()
   console.log(result);
 
   result.forEach((listing) =>{
@@ -21,7 +22,7 @@ async function getAllListings() {
         <p class="mt-3 block text-right text-black"> Number of participants:
               ${listing.participant}/${listing.maxParticipant}
             </p>
-            <button class="m-2 hover:bg-gray-400 text-black border px-4 rounded-md" onclick="">Participate<button/> 
+            <button class="join m-2 hover:bg-gray-400 text-black border px-4 rounded-md" onclick="participate('${listing._id}')">Participate<button/> 
     </div>
 </div>`
   })
@@ -30,6 +31,37 @@ if (listings) {
   getAllListings();
 }
 
+async function participate(listingId){
+  
+
+  const request = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      Authorization: `Bearer ${jwt}`,
+
+    },
+  };
+  const apiRequest = await fetch(
+    `http://localhost:3500/listing/join/${listingId}`,
+    request
+  );
+  const result = await apiRequest.json();
+  console.log(result.maxParticipant);
+  console.log(result.participant);
+
+  for(i=0; i<=result.maxParticipant; i++){
+    if (result.participant === result.maxParticipant){
+      return
+    }
+    else{
+      result.documentparticipant +1
+      window.alert("Join successfull !");
+      window.location.reload();
+      return
+  }
+  }
+}
 
 async function getAllFromUser() {
 
@@ -248,28 +280,28 @@ async function displayEdit(listingId) {
   </div>`;
 }
 async function updateListing(listingId) {
-  let image = document.querySelector("#editImage").value;
-  let place = document.querySelector("#editPlace").value;
-  let description = document.querySelector("#editDescription").value;
-  let title = document.querySelector("#editTitle").value;
-  let eventDate = document.querySelector("#editEventDate").value;
-  let maxParticipant = document.querySelector("#editMaxParticipant").value;
+  const image = document.querySelector("#editImage").value;
+  const place = document.querySelector("#editPlace").value;
+  const description = document.querySelector("#editDescription").value;
+  const title = document.querySelector("#editTitle").value;
+  const eventDate = document.querySelector("#editEventDate").value;
+  const maxParticipant = document.querySelector("#editMaxParticipant").value;
 
 
 
   const editMsg = document.querySelector(".edit-msg");
 
-  let editListing = {
+  const editListing = {
     image: image,
     place: place,
     description: description,
     title: title,
     eventDate: eventDate,
-    maxParticipant: maxParticipant,
+    maxParticipant: Number(maxParticipant),
 
   };
 
-  let request = {
+  const request = {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
@@ -277,11 +309,11 @@ async function updateListing(listingId) {
     },
     body: JSON.stringify(editListing),
   };
-  let apiRequest = await fetch(
+  const apiRequest = await fetch(
     `http://localhost:3500/listing/edit/${listingId}`,
     request
   );
-  let result = await apiRequest.json();
+  const result = await apiRequest.json();
   if(apiRequest.status !==200){
     console.log("missing fields");
     editMsg.innerText = 'Missing fields !';
@@ -289,7 +321,7 @@ async function updateListing(listingId) {
   }
   editMsg.innerText = 'Product updated !';
   setTimeout(() => {
-    // window.location.reload();
+    window.location.reload();
   }, "2000");
   return
 }
