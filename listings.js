@@ -8,7 +8,6 @@ const userListings = document.querySelector(".userListings");
 async function getAllListings() {
   const getAll = await fetch('http://localhost:3500/listing/all')
   const result = await getAll.json()
-  console.log(result);
 
   result.forEach((listing) =>{
     listings.innerHTML += `<div class="bg-white rounded-lg border shadow-md max-w-xs md:max-w-none overflow-hidden">
@@ -48,21 +47,18 @@ async function participate(listingId){
     request
   );
   const result = await apiRequest.json();
-  console.log(result.maxParticipant);
-  console.log(result.participant);
 
-  for(i=0; i<=result.maxParticipant; i++){
-    if (result.participant === result.maxParticipant){
-      window.alert("Event full");
-      return
-    }
-    else{
-      result.participant +1
-      window.alert("Join successfull !");
-      window.location.reload();
-      return
+  if (!result.success){
+    window.alert(result.msg);
+    return
   }
-  }
+  else{
+    result.participant +1
+    window.alert(result.msg);
+    window.location.reload();
+    return
+}
+  
 }
 
 async function getAllFromUser() {
@@ -76,7 +72,6 @@ async function getAllFromUser() {
   };
   let getAll = await fetch(`http://localhost:3500/listing/mine`, request);
   let result = await getAll.json();
-  console.log(jwt);
   result.forEach((listing) => {
     userListings.innerHTML += `<div
             class="rounded-lg border shadow-md max-w-xs md:max-w-none overflow-hidden"
@@ -102,8 +97,13 @@ async function getAllFromUser() {
             </p>
             </div>
             <button class="m-2 hover:bg-gray-400 text-black font-bold border px-4 rounded-md" onclick="deleteListing('${listing._id}')">Delete<button/> 
-            <button class="m-2 hover:bg-gray-400 text-black font-bold border px-4 rounded-md" onclick="displayEdit('${listing._id}')">Edit<button/>`;
+            <button id='displayEdit' class="m-2 hover:bg-gray-400 text-black font-bold border px-4 rounded-md" onclick="displayEdit('${listing._id}')">Edit<button/>`;
   });
+  const machin = document.querySelector('#displayEdit')
+  if(machin){
+   machin.addEventListener('click', () =>{
+   })
+  }
 }
 if (userListings) {
   getAllFromUser();
@@ -136,9 +136,7 @@ async function createListing() {
   };
   let apiRequest = await fetch("http://localhost:3500/listing/add", request);
   let result = await apiRequest.json();
-  console.log(jwt);
   if (apiRequest.status !== 201) {
-    console.log(result);
     listingMsg.innerHTML = `<p class="mt-7 text-center rounded-lg text-red-600 font-bold">Missing fields !</p>`;
     return;
   }
@@ -163,7 +161,6 @@ async function deleteListing(listingId) {
 
 
   };
-  console.log(listingId);
   let apiRequest = await fetch(
     `http://localhost:3500/listing/delete/${listingId}`,
     request
@@ -175,7 +172,13 @@ async function deleteListing(listingId) {
 }
 
 async function displayEdit(listingId) {
-  const editModal = document.querySelector(".edit");
+  const editModal = document.querySelector("#edit");
+  const createModal = document.querySelector("#createListing")
+  document.body.classList.add("backdrop-blur-xl")
+  document.body.classList.add('overflow-hidden')
+  userListings.classList.add('hidden')
+  createModal.classList.add("hidden")
+  
 
   let request = {
     method: "GET",
@@ -190,11 +193,10 @@ async function displayEdit(listingId) {
     request
   );
   let result = await apiRequest.json();
-  console.log(result);
   editModal.innerHTML = `
   <div
     id="editListing"
-    class="lg:p-36 mx-auto md:p-52 sm:20 p-8 w-3/5 rounded-lg"
+    class="lg:px-28 md:px-32 sm:px-8 lg:py-16 md:py-20 sm:py-6 py-6 px-8 my-auto mx-auto mt-8 sm:20 lg:w-2/5 rounded-lg bg-white border shadow-md max-w-xs md:max-w-none absolute h-[800px] top-16 bottom-0 left-0 right-0 h-auto overflow-auto"
   >
     <h2 class="text-2xl font-semibold mb-4 text-center">Edit your listing</h2>
     <form method="post" id="form">
@@ -269,17 +271,20 @@ async function displayEdit(listingId) {
           autocomplete="off"
         >${result.description}</textarea>
       </div>
+      <div class="flex place-content-center">
       <button
       onclick="updateListing('${result._id}')"
         id="editBtn"
         type="button"
-        class="bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-md py-2 px-4 w-full"
+        class="bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-md py-2 px-4 w-3/12"
       >
         Edit
       </button>
+      </div>
       <p class="edit-msg"></p>
     </form>
   </div>`;
+
 }
 async function updateListing(listingId) {
   const image = document.querySelector("#editImage").value;
@@ -317,7 +322,6 @@ async function updateListing(listingId) {
   );
   const result = await apiRequest.json();
   if(apiRequest.status !==200){
-    console.log("missing fields");
     editMsg.innerText = 'Missing fields !';
     return
   }

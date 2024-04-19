@@ -20,7 +20,6 @@ async function register() {
     email: email,
     password: password,
   };
-  console.log(newUser);
   let request = {
     method: "POST",
     headers: {
@@ -33,9 +32,11 @@ async function register() {
     request
   );
   const result = await apiRequest.json();
-  console.log(result);
-  if (result.status === 201) {
-    registerMsg.innerHTML = `<p class="mt-7 text-center rounded-lg bg-gradient-to-r from-green-400 to-lime-400 text-lime-800 font-bold">Registration successful, you can now log in</p>`;
+  if (apiRequest.status === 201) {
+    registerMsg.innerHTML = `<p class="mt-7 text-center rounded-lg text-green-500 font-bold">Registration successful, you can now log in</p>`;
+  }else {
+    registerMsg.innerHTML = `<p class="mt-7 text-center rounded-lg text-red-500 font-bold">Wrong credentials !</p>`;
+    return
   }
 }
 async function login() {
@@ -59,19 +60,18 @@ async function login() {
   let result = await apiRequest.json();
 
   if (apiRequest.status !== 200) {
-    loginMsg.innerHTML = `<p class="mt-7 text-center rounded-lg bg-gradient-to-r from-pink-300 to-pink-400 text-red-800 font-bold">Invalid credentials</p>`;
-    console.log('wrong credentials');
+    loginMsg.innerHTML = `<p class="mt-7 text-center rounded-lg text-red-500 font-bold">Invalid credentials</p>`;
     return;
     
   } else {
     const data = await result;
     window.localStorage.setItem("token", data.jwt);
-    console.log(apiRequest);
-    loginMsg.innerHTML = `<p class="mt-7 text-center rounded-lg bg-gradient-to-r from-green-400 to-lime-400 text-lime-800 font-bold">Login successful,<br>
+    loginMsg.innerHTML = `<p class="mt-7 text-center rounded-lg text-green-500 font-bold">Login successful,<br>
     you will be redirected to your dashboard</p>`;
     setTimeout(() => {
       window.location.href = "./dashboard.html";
     }, "4000");
+    return
   }
 }
 if (registerBtn) {

@@ -6,7 +6,7 @@
     <title>BestTrip</title>
   </head>
   <body>
-    <header class="header sticky top-0 bg-white shadow-md flex items-center justify-between px-8 py-02">
+    <header class="header sticky top-0 bg-white shadow-md flex items-center justify-between px-8 py-02 z-10">
  
       <h1 class="w-3/12">
           <a href="./index.html">
@@ -43,8 +43,20 @@
           
       </div>
     </header>
-    <main>
-      
+    <main class="relative sticky overflow-hidden">
+      <div class="w-screen h-screen overflow-hidden relative before:block before:absolute before:bg-black before:h-full before:w-full before:top-0 before:left-0 before:z-10 before:opacity-30">
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="absolute top-0 left-0 min-h-full" alt="">
+        <div class="relative z-20 max-w-screen-lg mx-auto grid grid-cols-12 h-full items-center">
+          <div class="col-span-6">
+            <span class="uppercase text-white text-xs font-bold mb-2 block">WE ARE EXPERTS</span>
+            <h1 class="text-white font-extrabold text-5xl mb-8">Find, create and organize events</h1>
+            <p class="text-stone-100 text-base">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+            <a href="./listings.html" class="mt-32 w-fit block text-white uppercase py-4 text-base font-light px-10 border border-white hover:bg-white hover:bg-opacity-10">View all event</a>
+          </div>
+        </div>
+      </div>
     </main>
     <script src="./listings.js"></script>
     <script src="./auth.js"></script>

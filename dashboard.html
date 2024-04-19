@@ -6,7 +6,7 @@
     <title>BestTrip</title>
   </head>
   <body>
-    <header class="header sticky top-0 bg-white shadow-md flex items-center justify-between px-8 py-02">
+    <header class="header sticky top-0 bg-white shadow-md flex items-center justify-between px-8 py-2 z-20">
  
       <h1 class="w-3/12">
           <a href="./index.html">
@@ -38,15 +38,15 @@
          
       </div>
     </header>
-    <main>
+    <main class="">
         <div
         id="createListing"
-        class="lg:p-36 md:p-52 mx-auto sm:20 p-8 lg:w-2/5 rounded-lg "
+        class="relative lg:px-28 md:px-32 sm:px-8 lg:py-16 md:py-20 sm:py-6 py-6 px-8 my-auto mx-auto mt-8 sm:20 lg:w-2/5 rounded-lg border shadow-md max-w-xs md:max-w-none z-10"
       >
         <h2 class="text-2xl font-semibold mb-4 text-center">
           Create a new listing
         </h2>
-        <form action="">
+        <form class="" action="">
           <div class="mb-4">
             <label for="title" class="block text-black">Title</label>
             <input
@@ -110,12 +110,13 @@
               autocomplete="off"
             ></textarea>
           </div>
-          <button
+          <div class="flex place-content-center"><button
             id="listingBtn"
-            class="bg-black hover:bg-black text-white font-semibold rounded-md py-2 px-4 w-full"
+            class="bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-md py-2 px-4 w-3/12"
           >
             Send
-          </button>
+          </button></div>
+          
           <p class="listing-msg"></p>
         </form>
       </div>
@@ -126,7 +127,7 @@
           class="userListings grid justify-center px-3 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7 my-10"
         ></div>
 
-        <div class="edit"></div>
+        <div id="edit" class="w-full absolute top-0 bottom-0 left-0 right-0 h-screen"></div>
     </main>
     <script src="./listings.js"></script>
     <script src="./auth.js"></script>
